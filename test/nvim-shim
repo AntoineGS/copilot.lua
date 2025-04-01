@@ -1,0 +1,33 @@
+#!/usr/bin/env nu
+
+def --wrapped main [...args] {
+  print "running nvim-shim"
+  # Set environment variables
+  $env.XDG_CONFIG_HOME = 'C:/Users/antoi/AppData/Local/nvim-data/lazy/copilot.lua/test/xdg/config/'
+  $env.XDG_STATE_HOME = 'C:/Users/antoi/AppData/Local/nvim-data/lazy/copilot.lua/test/xdg/local/state/'
+  $env.XDG_DATA_HOME = 'C:/Users/antoi/AppData/Local/nvim-data/lazy/copilot.lua/test/xdg/local/share/'
+
+  # Create symbolic link
+  # ln -s (pwd) $"($env.XDG_DATA_HOME)/nvim/site/pack/testing/start/rainbow-delimiters"
+  mkdir 'C:\Users\antoi\AppData\Local\nvim-data\lazy\copilot.lua\test\xdg\local\share\nvim\site\pack\testing\start\'
+
+  # print "Creating symbolic link..."
+  # mklink /D 'C:\Users\antoi\AppData\Local\nvim-data\lazy\copilot.lua\test\xdg\local\share\nvim\site\pack\testing\start\rainbow-delimiters' (pwd)
+
+  print "args: {"
+  print ...$args
+  print "}"
+  # Run nvim with arguments
+  print "Running nvim with arguments..."
+  let exit_code = (do {
+      nvim --cmd 'set loadplugins' -l lua5.1.exe ...$args
+  } | complete).exit_code
+
+  # print "Removing symbolic link..."
+  # Remove symbolic link
+  # rm 'C:\Users\antoi\AppData\Local\nvim-data\lazy\copilot.lua\test\xdg\local\share\nvimnvim\site\pack\testing\start\rainbow-delimiters'
+
+  # Exit with the same exit code
+  print $exit_code
+  exit $exit_code
+}

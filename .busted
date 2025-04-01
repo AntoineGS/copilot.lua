@@ -1,0 +1,12 @@
+return {
+  _all = {
+    lua = "nu C:/Users/antoi/AppData/Local/nvim-data/lazy/copilot.lua/test/nvim-shim",
+  },
+  unit = {
+    ROOT = { "C:/Users/antoi/AppData/Local/nvim-data/lazy/copilot.lua/test/unit/" },
+  },
+  functional = {
+    ROOT = { "C:/Users/antoi/AppData/Local/nvim-data/lazy/copilot.lua/test/e2e/" },
+    pattern = "", -- No fancy names for E2E tests
+  },
+}
